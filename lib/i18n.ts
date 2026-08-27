@@ -1,10 +1,10 @@
 
 export const copy = {
   cuisine: "Productos naturales",
-  hero: "Bienestar natural, en cada producto.",
-  near: "Calidad que se nota.",
-  intro: "Seleccionamos productos naturales de calidad para tu bienestar diario.",
-  introStrong: "Cuidado natural, resultados en los que podés confiar.",
+  hero: "Plantas con propósito.",
+  near: "Productos con alma.",
+  intro: "Cada producto es elaborado a mano, en pequeños lotes, seleccionando con dedicación cada planta y cada ingrediente que usamos.",
+  introStrong: "Elaboración artesanal, cuidada desde la primera hoja hasta el frasco final.",
   viewMenu: "Ver catálogo",
   menu: "Nuestra selección",
   favorite: "Elegí tu favorito",
