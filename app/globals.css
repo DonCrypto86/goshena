@@ -242,7 +242,7 @@ footer { position:relative;z-index:2;min-height:130px;display:flex;align-items:c
 @media (prefers-reduced-motion:reduce) {
   .thai-hero::before,.thai-hero::after,.goshena-hero-mark { animation:none; }.thai-lottie { display:none; }
 }
-.product-variants { min-height:3.8em;line-height:1.45!important; }.thai-cta { padding:70px 0;background:var(--thai-red);color:#fff; }.thai-cta h2 { margin:8px 0 24px; }.thai-cta a { background:#fff;color:var(--thai-green);width:max-content; }
+.product-variants { min-height:3.8em;line-height:1.45!important; }.thai-cta { position:relative;z-index:4;margin-top:-2px;padding:70px 0;background:var(--thai-red);color:#fff; }.thai-cta h2 { margin:8px 0 24px; }.thai-cta a { background:#fff;color:var(--thai-green);width:max-content; }
 .thai-footer { min-height:110px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--thai-green); }.thai-footer>a { display:flex;align-items:center;gap:7px;font-size:11px;color:#6f6a62; }
 .thai-footer-brand { display:flex;align-items:center;gap:9px; }.thai-footer-brand img { border-radius:50%;object-fit:contain; }
 .admin-brand strong { color:var(--thai-green);font:800 20px/1.1 Inter,Arial,sans-serif;letter-spacing:.06em; }
