@@ -209,7 +209,7 @@ footer { position:relative;z-index:2;min-height:130px;display:flex;align-items:c
 @media (prefers-reduced-motion:reduce) { .wave-animation { display:none; }.hero-title-slide { animation:none; } }
 
 /* Goshena — identidad cálida y natural. */
-:root { --thai-red:#8a6b1f; --thai-green:#1f3a2c; --thai-cream:#f3ede0; }
+:root { --thai-red:#ad8a2e; --thai-green:#173a44; --thai-cream:#f2efe6; }
 .thai-header { position:sticky;top:0;z-index:20;background:linear-gradient(105deg,#f4ebddf2,#fff9eff0 48%,#ead9c5ee);border-bottom:1px solid #6e54331f;backdrop-filter:blur(14px); }
 .thai-nav { min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px; }
 .thai-wordmark { display:flex;align-items:center;height:72px;color:var(--thai-green); }
@@ -227,9 +227,9 @@ footer { position:relative;z-index:2;min-height:130px;display:flex;align-items:c
 .goshena-hero-mark { position:absolute;z-index:0;right:3%;top:50%;width:min(360px,30vw);aspect-ratio:1.18;transform:translateY(-50%);opacity:.12;pointer-events:none;filter:saturate(.75) contrast(.95);animation:goshena-logo-pulse 6s ease-in-out infinite; }
 .goshena-hero-mark img { object-fit:contain; }
 .thai-lottie { position:absolute;z-index:0;right:-3%;top:50%;width:min(620px,52vw);height:min(620px,52vw);border:0;transform:translateY(-50%);opacity:.2;mix-blend-mode:screen;pointer-events:none;filter:sepia(.7) saturate(.7) hue-rotate(350deg) brightness(.9); }
-.thai-hero .shell { position:relative;z-index:1;padding-block:70px; }.thai-hero h1 { color:#241a14;white-space:normal;text-shadow:none;max-width:900px; }.thai-hero h1 em { color:#8a6b1f; }
+.thai-hero .shell { position:relative;z-index:1;padding-block:70px; }.thai-hero h1 { color:#241a14;white-space:normal;text-shadow:none;max-width:900px; }.thai-hero h1 em { color:#ad8a2e; }
 .thai-hero p { color:#65574b;font-size:18px;line-height:1.6;margin:0 0 28px;max-width:720px; }.thai-hero p strong { color:#382b22;font-weight:750; }.thai-hero .primary { background:linear-gradient(135deg,#2f2118,#6e3b24);color:#fff8ed;box-shadow:0 12px 30px #6e3b2438; }
-.thai-hero .eyebrow { color:#8a6b1f; }.catalog .eyebrow { color:var(--thai-red); }.filters button.active { background:var(--thai-green);border-color:var(--thai-green); }
+.thai-hero .eyebrow { color:#ad8a2e; }.catalog .eyebrow { color:var(--thai-red); }.filters button.active { background:var(--thai-green);border-color:var(--thai-green); }
 .thai-catalog { z-index:3;margin-top:-28px;padding-top:50px;border-radius:30px 30px 0 0; }
 .thai-catalog::before { border-radius:30px 30px 0 0;box-shadow:0 -18px 42px #08060420; }
 .thai-filters { display:flex;align-items:center;gap:8px;overflow:visible; }

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
-  <title id="title">La Hacienda</title>
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7b241c"/><stop offset="1" stop-color="#3c120e"/></linearGradient></defs>
-  <circle cx="120" cy="120" r="112" fill="#fbf4e8" stroke="#7b241c" stroke-width="8"/>
-  <circle cx="120" cy="120" r="96" fill="url(#g)"/>
-  <path d="M58 105c17-24 39-36 62-36s45 12 62 36l-15 11c-14-18-30-27-47-27s-33 9-47 27z" fill="#d7ad68"/>
-  <path d="M80 104v50h80v-50l-40-24z" fill="#fbf4e8"/><path d="M111 124h18v30h-18z" fill="#7b241c"/>
-  <text x="120" y="181" text-anchor="middle" fill="#fbf4e8" font-family="Georgia,serif" font-size="18" font-weight="700" letter-spacing="2">LA HACIENDA</text>
-</svg>

@@ -17,7 +17,8 @@ Copiá `.env.example` como `.env.local` y completá Supabase y el número de Wha
 
 ## Estado actual
 
-Los 27 productos fueron cargados con nombre, categoría y precio PLACEHOLDER
-(`Producto 01`…`Producto 27`, categoría "Productos", Gs. 50.000) a partir de
-las fotos en `public/products/01.webp`…`27.webp`. Reemplazá cada uno con los
-datos reales desde el panel `/admin`.
+El catálogo está vacío: las 27 fotos numeradas que venían en la carpeta
+inicial eran en realidad del catálogo de Papa Muay Thai y fueron
+eliminadas (tanto los archivos como los productos placeholder en
+Supabase). Cargá los productos reales de Goshena (foto, nombre, categoría
+y precio) desde el panel `/admin`.

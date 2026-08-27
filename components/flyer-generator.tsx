@@ -114,7 +114,7 @@ async function renderFlyer(products: Product[], catalogName: string, subtitle: s
   if (!context) throw new Error("Tu navegador no permite crear el flyer.");
 
   const palette = theme === "goshena"
-    ? { top: "#0c1710", bottom: "#1f3a2c", accent: "#c9a227", card: "#f7f3e8", ink: "#16241b", soft: "#7c8a72" }
+    ? { top: "#0a1a1f", bottom: "#173a44", accent: "#d8b848", card: "#f7f4ec", ink: "#122229", soft: "#7c9299" }
     : theme === "hacienda"
     ? { top: "#130c09", bottom: "#3a1812", accent: "#d6b36a", card: "#fffaf0", ink: "#21140e", soft: "#7a6043" }
     : theme === "thai"
