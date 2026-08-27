@@ -23,10 +23,11 @@ export const copy = {
 } as const;
 
 export const categoryLabels: Record<string, string> = {
-  productos: "Productos",
   ofertas: "Ofertas",
   cremas: "Cremas",
   tinturas: "Tinturas",
+  aceites: "Aceites",
+  fragancias: "Fragancias",
 };
 
 export function categoryLabel(category: string): string {

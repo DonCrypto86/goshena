@@ -59,7 +59,7 @@ export function AdminDashboard({ initialProducts, username, tenantId, tenantSlug
           brand: "Goshena",
           reference,
           price: 0,
-          category: "productos",
+          category: "",
           sizes: "",
           color: "",
           short_note: "",
@@ -91,7 +91,7 @@ export function AdminDashboard({ initialProducts, username, tenantId, tenantSlug
     <div className="admin-title"><div><span className="eyebrow">@{username}</span><h1>Mis productos</h1><p>{products.length} productos en total</p></div><div className="admin-title-actions"><input ref={bulkFileRef} className="bulk-upload-input" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={uploadPhotos}/><FlyerGenerator products={products} catalogName="Goshena" catalogSubtitle="Productos naturales para tu bienestar" catalogLogoUrl="/brand/goshena-logo.png" theme="goshena"/><button className="import" onClick={() => bulkFileRef.current?.click()} disabled={uploading}><Upload size={19}/> {uploading ? `Subiendo ${uploadProgress}…` : "Subir varias fotos"}</button><button className="add" onClick={() => setEditing(null)}><Plus size={19}/> Agregar producto</button></div></div>
     <VisitorAnalytics tenantId={tenantId} />
     <div className="product-list">{products.map((p) => <article className="admin-product" key={p.id}><div className="thumb"><Image src={p.image_url} fill alt="" sizes="72px" /></div><div className="admin-product-info"><span className={`status ${p.status}`}>{p.status === "published" ? "Publicado" : "Oculto"}</span><h2>{p.name}</h2><p>{formatGuarani(p.price)} · {categoryLabel(p.category)}</p></div><div className="admin-actions"><button onClick={() => setEditing(p)} aria-label="Editar"><Pencil size={17}/></button><button onClick={() => toggle(p)} aria-label={p.status === "published" ? "Ocultar" : "Publicar"}>{p.status === "published" ? <EyeOff size={17}/> : <Eye size={17}/>}</button><button className="danger" onClick={() => remove(p)} aria-label="Eliminar"><Trash2 size={17}/></button></div></article>)}</div>
-    {editing !== undefined && <ProductModal product={editing} categories={Array.from(new Set(["productos", "ofertas", "cremas", "tinturas", ...products.map((p) => p.category)])).sort((a, b) => a.localeCompare(b))} tenantId={tenantId} tenantSlug={tenantSlug} busy={busy} setBusy={setBusy} close={() => setEditing(undefined)} saved={(product) => { setProducts(editing ? products.map(p => p.id === product.id ? product : p) : [product, ...products]); setEditing(undefined); }} />}
+    {editing !== undefined && <ProductModal product={editing} categories={Array.from(new Set(["ofertas", "cremas", "tinturas", "aceites", "fragancias", ...products.map((p) => p.category)])).sort((a, b) => a.localeCompare(b))} tenantId={tenantId} tenantSlug={tenantSlug} busy={busy} setBusy={setBusy} close={() => setEditing(undefined)} saved={(product) => { setProducts(editing ? products.map(p => p.id === product.id ? product : p) : [product, ...products]); setEditing(undefined); }} />}
     <footer className="admin-footer"><span>Producto de</span><Image src="/brand/wendelo-mark.png" alt="WENDELO" width={28} height={25}/></footer>
   </main>;
 }
@@ -162,7 +162,7 @@ function ProductModal({ product, categories, tenantId, tenantSlug, close, saved,
     <label>Marca<input name="brand" defaultValue={product?.brand ?? "Goshena"} required /></label>
     <label>Referencia<input name="reference" defaultValue={product?.reference} required /></label>
     <label>Precio en Gs.<input name="price" type="number" min="0" step="500" defaultValue={product?.price} required /></label>
-    <label>Categoría<input name="category" list="category-options" defaultValue={product?.category ?? "productos"} placeholder="Ej: cremas, tinturas..." required/><datalist id="category-options">{categories.map((c) => <option value={c} key={c}/>)}</datalist></label>
+    <label>Categoría<input name="category" list="category-options" defaultValue={product?.category ?? ""} placeholder="Ej: cremas, tinturas..." required/><datalist id="category-options">{categories.map((c) => <option value={c} key={c}/>)}</datalist></label>
     <label>Estado<select name="status" defaultValue={product?.status ?? "published"}><option value="published">Publicado</option><option value="hidden">Oculto</option></select></label>
     <label>Variantes y precios<input name="sizes" defaultValue={product?.sizes}/></label>
     <label>Detalle opcional<input name="color" defaultValue={product?.color}/></label>
