@@ -209,7 +209,7 @@ footer { position:relative;z-index:2;min-height:130px;display:flex;align-items:c
 @media (prefers-reduced-motion:reduce) { .wave-animation { display:none; }.hero-title-slide { animation:none; } }
 
 /* Goshena — identidad cálida y natural. */
-:root { --thai-red:#ad8a2e; --thai-green:#173a44; --thai-cream:#f2efe6; }
+:root { --thai-red:#ad8a2e; --thai-green:#2a6660; --thai-cream:#f2efe6; }
 .thai-header { position:sticky;top:0;z-index:20;background:linear-gradient(105deg,#f4ebddf2,#fff9eff0 48%,#ead9c5ee);border-bottom:1px solid #6e54331f;backdrop-filter:blur(14px); }
 .thai-nav { min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px; }
 .thai-wordmark { display:flex;align-items:center;height:72px;color:var(--thai-green); }
