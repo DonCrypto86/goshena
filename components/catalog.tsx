@@ -7,9 +7,7 @@ import type { Category, Product } from "@/lib/types";
 import { formatGuarani, whatsappUrl } from "@/lib/format";
 import { createClient } from "@/lib/supabase/client";
 import { TENANT_SLUG } from "@/lib/tenant";
-import { categoryLabels, copy } from "@/lib/i18n";
-
-const categories: Category[] = ["productos", "ofertas"];
+import { categoryLabel, copy } from "@/lib/i18n";
 
 function WhatsAppIcon({ size = 22 }: { size?: number }) {
   return <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M27.3 4.6A15.5 15.5 0 0 0 2.9 23.3L.7 31l7.9-2.1A15.5 15.5 0 0 0 27.3 4.6Z" fill="currentColor"/><path d="M22.7 18.9c-.4-.2-2.4-1.2-2.8-1.3-.4-.1-.7-.2-1 .2-.3.4-1.1 1.3-1.4 1.6-.2.3-.5.3-.9.1-2.5-1.2-4.1-2.2-5.7-5-.4-.7.4-.7 1.2-2.3.1-.3.1-.6 0-.8-.1-.2-1-2.4-1.3-3.3-.4-.9-.8-.8-1-.8H9c-.4 0-.8.1-1.2.6-.4.5-1.6 1.6-1.6 3.9s1.7 4.5 1.9 4.8c.2.3 3.3 5.1 8.1 7.1 3 1.3 4.2 1.4 5.7 1.2.9-.1 2.4-1 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.5-.3-.9-.5Z" fill="white"/></svg>;
@@ -21,7 +19,8 @@ export function Catalog({ products }: { products: Product[] }) {
   const [selected, setSelected] = useState<Product | null>(null);
   const [sharing, setSharing] = useState(false);
   const t = copy;
-  const filters: readonly ["todos" | Category, string][] = [["todos", t.all], ...categories.map((category) => [category, categoryLabels[category]] as [Category, string])];
+  const categories = useMemo(() => Array.from(new Set(products.map((item) => item.category))).sort((a, b) => a.localeCompare(b)), [products]);
+  const filters: readonly ["todos" | Category, string][] = [["todos", t.all], ...categories.map((category) => [category, categoryLabel(category)] as [Category, string])];
   useEffect(() => {
     const productId = new URLSearchParams(window.location.search).get("producto");
     if (productId) setSelected(products.find((item) => item.id === productId) ?? null);

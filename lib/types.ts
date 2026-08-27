@@ -1,4 +1,4 @@
-export type Category = "productos" | "ofertas";
+export type Category = string;
 
 export type Product = {
   id: string; tenant_id?: string; name: string; brand: string; reference: string; price: number; category: Category;

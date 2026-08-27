@@ -1,4 +1,3 @@
-import type { Category } from "@/lib/types";
 
 export const copy = {
   cuisine: "Productos naturales",
@@ -23,7 +22,13 @@ export const copy = {
   all: "Todo",
 } as const;
 
-export const categoryLabels: Record<Category, string> = {
+export const categoryLabels: Record<string, string> = {
   productos: "Productos",
   ofertas: "Ofertas",
+  cremas: "Cremas",
+  tinturas: "Tinturas",
 };
+
+export function categoryLabel(category: string): string {
+  return categoryLabels[category] ?? category.charAt(0).toUpperCase() + category.slice(1);
+}

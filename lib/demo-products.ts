@@ -6,6 +6,7 @@ const product = (
   reference: string,
   price: number,
   image: string,
+  category: string,
   short_note?: string
 ): Product => ({
   id,
@@ -13,7 +14,7 @@ const product = (
   brand: "Mamá Medica",
   reference,
   price,
-  category: "productos",
+  category,
   image_url: `/products/${image}`,
   short_note,
   status: "published",
@@ -23,10 +24,10 @@ const product = (
 
 // PRECIOS PLACEHOLDER: reemplazar por los precios reales desde /admin.
 export const demoProducts: Product[] = [
-  product("1", "Relax", "GOS-01", 50000, "relax-aceite-coco.jpg", "Aceite de coco con manzanilla, passiflora y... (tercer ingrediente cortado en la etiqueta, confirmar)"),
-  product("2", "Tintura Madre de Ortiga", "GOS-02", 50000, "tintura-madre-ortiga.jpg", "Extracto alcohólico 96% concentrado de ortiga"),
-  product("3", "Tintura Madre de Malva Blanca", "GOS-03", 50000, "tintura-madre-malva-blanca.jpg", "Extracto alcohólico de flores y hojas de malva blanca"),
-  product("4", "Tintura Madre de Artemisia Annua A3", "GOS-04", 50000, "tintura-madre-artemisia-annua.jpg", "Extracto alcohólico 96% de Artemisia annua A3"),
-  product("5", "Tintura de Passiflora", "GOS-05", 50000, "tintura-passiflora.jpg", "Extracto alcohólico 96% de flores y hojas de passiflora"),
-  product("6", "Crema Natural de Artemisia Annua", "GOS-06", 50000, "crema-artemisia-annua.jpg", "Artemisia annua, aceite de coco y cera de abejas"),
+  product("1", "Relax", "GOS-01", 50000, "relax-aceite-coco.jpg", "productos", "Aceite de coco con manzanilla, passiflora y... (tercer ingrediente cortado en la etiqueta, confirmar)"),
+  product("2", "Tintura Madre de Ortiga", "GOS-02", 50000, "tintura-madre-ortiga.jpg", "tinturas", "Extracto alcohólico 96% concentrado de ortiga"),
+  product("3", "Tintura Madre de Malva Blanca", "GOS-03", 50000, "tintura-madre-malva-blanca.jpg", "tinturas", "Extracto alcohólico de flores y hojas de malva blanca"),
+  product("4", "Tintura Madre de Artemisia Annua A3", "GOS-04", 50000, "tintura-madre-artemisia-annua.jpg", "tinturas", "Extracto alcohólico 96% de Artemisia annua A3"),
+  product("5", "Tintura de Passiflora", "GOS-05", 50000, "tintura-passiflora.jpg", "tinturas", "Extracto alcohólico 96% de flores y hojas de passiflora"),
+  product("6", "Crema Natural de Artemisia Annua", "GOS-06", 50000, "crema-artemisia-annua.jpg", "cremas", "Artemisia annua, aceite de coco y cera de abejas"),
 ];

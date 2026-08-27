@@ -6,6 +6,7 @@ import { Eye, EyeOff, LogOut, Pencil, Plus, Trash2, Upload, Users, X } from "luc
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { formatGuarani } from "@/lib/format";
+import { categoryLabel } from "@/lib/i18n";
 import type { Product } from "@/lib/types";
 import { FlyerGenerator } from "@/components/flyer-generator";
 
@@ -89,8 +90,8 @@ export function AdminDashboard({ initialProducts, username, tenantId, tenantSlug
     <header className="admin-header"><div className="admin-brand"><strong>GOSHENA</strong><small>Administración</small></div><button className="ghost" onClick={signOut}><LogOut size={17}/> Salir</button></header>
     <div className="admin-title"><div><span className="eyebrow">@{username}</span><h1>Mis productos</h1><p>{products.length} productos en total</p></div><div className="admin-title-actions"><input ref={bulkFileRef} className="bulk-upload-input" type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={uploadPhotos}/><FlyerGenerator products={products} catalogName="Goshena" catalogSubtitle="Productos naturales para tu bienestar" catalogLogoUrl="/brand/goshena-logo.png" theme="goshena"/><button className="import" onClick={() => bulkFileRef.current?.click()} disabled={uploading}><Upload size={19}/> {uploading ? `Subiendo ${uploadProgress}…` : "Subir varias fotos"}</button><button className="add" onClick={() => setEditing(null)}><Plus size={19}/> Agregar producto</button></div></div>
     <VisitorAnalytics tenantId={tenantId} />
-    <div className="product-list">{products.map((p) => <article className="admin-product" key={p.id}><div className="thumb"><Image src={p.image_url} fill alt="" sizes="72px" /></div><div className="admin-product-info"><span className={`status ${p.status}`}>{p.status === "published" ? "Publicado" : "Oculto"}</span><h2>{p.name}</h2><p>{formatGuarani(p.price)} · {p.category}</p></div><div className="admin-actions"><button onClick={() => setEditing(p)} aria-label="Editar"><Pencil size={17}/></button><button onClick={() => toggle(p)} aria-label={p.status === "published" ? "Ocultar" : "Publicar"}>{p.status === "published" ? <EyeOff size={17}/> : <Eye size={17}/>}</button><button className="danger" onClick={() => remove(p)} aria-label="Eliminar"><Trash2 size={17}/></button></div></article>)}</div>
-    {editing !== undefined && <ProductModal product={editing} tenantId={tenantId} tenantSlug={tenantSlug} busy={busy} setBusy={setBusy} close={() => setEditing(undefined)} saved={(product) => { setProducts(editing ? products.map(p => p.id === product.id ? product : p) : [product, ...products]); setEditing(undefined); }} />}
+    <div className="product-list">{products.map((p) => <article className="admin-product" key={p.id}><div className="thumb"><Image src={p.image_url} fill alt="" sizes="72px" /></div><div className="admin-product-info"><span className={`status ${p.status}`}>{p.status === "published" ? "Publicado" : "Oculto"}</span><h2>{p.name}</h2><p>{formatGuarani(p.price)} · {categoryLabel(p.category)}</p></div><div className="admin-actions"><button onClick={() => setEditing(p)} aria-label="Editar"><Pencil size={17}/></button><button onClick={() => toggle(p)} aria-label={p.status === "published" ? "Ocultar" : "Publicar"}>{p.status === "published" ? <EyeOff size={17}/> : <Eye size={17}/>}</button><button className="danger" onClick={() => remove(p)} aria-label="Eliminar"><Trash2 size={17}/></button></div></article>)}</div>
+    {editing !== undefined && <ProductModal product={editing} categories={Array.from(new Set(["productos", "ofertas", "cremas", "tinturas", ...products.map((p) => p.category)])).sort((a, b) => a.localeCompare(b))} tenantId={tenantId} tenantSlug={tenantSlug} busy={busy} setBusy={setBusy} close={() => setEditing(undefined)} saved={(product) => { setProducts(editing ? products.map(p => p.id === product.id ? product : p) : [product, ...products]); setEditing(undefined); }} />}
     <footer className="admin-footer"><span>Producto de</span><Image src="/brand/wendelo-mark.png" alt="WENDELO" width={28} height={25}/></footer>
   </main>;
 }
@@ -122,7 +123,7 @@ function VisitorAnalytics({ tenantId }: { tenantId: string }) {
   </section>;
 }
 
-function ProductModal({ product, tenantId, tenantSlug, close, saved, busy, setBusy }: { product: Product | null; tenantId: string; tenantSlug: string; close: () => void; saved: (p: Product) => void; busy: boolean; setBusy: (b: boolean) => void }) {
+function ProductModal({ product, categories, tenantId, tenantSlug, close, saved, busy, setBusy }: { product: Product | null; categories: string[]; tenantId: string; tenantSlug: string; close: () => void; saved: (p: Product) => void; busy: boolean; setBusy: (b: boolean) => void }) {
   const fileRef = useRef<HTMLInputElement>(null);
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault(); setBusy(true); const form = new FormData(e.currentTarget); const supabase = createClient();
@@ -143,7 +144,7 @@ function ProductModal({ product, tenantId, tenantSlug, close, saved, busy, setBu
         brand: String(form.get("brand")),
         reference: String(form.get("reference")),
         price: Number(form.get("price")),
-        category: String(form.get("category")),
+        category: String(form.get("category")).trim().toLowerCase(),
         sizes: String(form.get("sizes") ?? ""),
         color: String(form.get("color") ?? ""),
         short_note: String(form.get("short_note") ?? ""),
@@ -161,7 +162,7 @@ function ProductModal({ product, tenantId, tenantSlug, close, saved, busy, setBu
     <label>Marca<input name="brand" defaultValue={product?.brand ?? "Goshena"} required /></label>
     <label>Referencia<input name="reference" defaultValue={product?.reference} required /></label>
     <label>Precio en Gs.<input name="price" type="number" min="0" step="500" defaultValue={product?.price} required /></label>
-    <label>Categoría<select name="category" defaultValue={product?.category ?? "productos"}><option value="productos">Productos</option><option value="ofertas">Ofertas</option></select></label>
+    <label>Categoría<input name="category" list="category-options" defaultValue={product?.category ?? "productos"} placeholder="Ej: cremas, tinturas..." required/><datalist id="category-options">{categories.map((c) => <option value={c} key={c}/>)}</datalist></label>
     <label>Estado<select name="status" defaultValue={product?.status ?? "published"}><option value="published">Publicado</option><option value="hidden">Oculto</option></select></label>
     <label>Variantes y precios<input name="sizes" defaultValue={product?.sizes}/></label>
     <label>Detalle opcional<input name="color" defaultValue={product?.color}/></label>

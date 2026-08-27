@@ -194,7 +194,7 @@ footer { position:relative;z-index:2;min-height:130px;display:flex;align-items:c
   .card h3 { font-size:18px;min-height:2.3em; }
   .meta { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .details { min-height:2.5em; }
-  .price { font-size:15px;margin:auto 0 12px;padding-top:12px; }
+  .price { font-size:15px;margin:auto 0 12px;padding-top:12px;text-align:right; }
   .whatsapp { font-size:11px; padding:10px 5px; }
   .product-lightbox { padding:10px; }
   .cta-background { object-position:47% center;opacity:.18; }
