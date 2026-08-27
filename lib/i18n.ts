@@ -1,10 +1,10 @@
 
 export const copy = {
-  cuisine: "Productos naturales",
+  cuisine: "Mamá Medica",
   hero: "Plantas con propósito.",
   near: "Productos con alma.",
-  intro: "Cada producto es elaborado a mano, en pequeños lotes, seleccionando con dedicación cada planta y cada ingrediente que usamos.",
-  introStrong: "Elaboración artesanal, cuidada desde la primera hoja hasta el frasco final.",
+  intro: "Plantas con propósito. Productos con alma,",
+  introStrong: "creados con amor y conciencia.",
   viewMenu: "Ver catálogo",
   menu: "Nuestra selección",
   favorite: "Elegí tu favorito",
